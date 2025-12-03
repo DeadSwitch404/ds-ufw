@@ -45,12 +45,12 @@ Safe default policies: incoming traffic = deny; outgoing traffic = allow.
 #+end_src
 
 * Operational Notes
-- The default incoming rule is deny.
-- The default outgoing rule is allow.
+- The *default* incoming rule is *deny*.
+- The *default* outgoing rule is *allow*.
 - IPv6 can be turned off with the =ufw_ipv6= variable.
 
 * Handlers
-The role restarts UFW when configuration changes occur.
+The role restarts ufw when configuration changes occur.
 
 * License
 MIT License
