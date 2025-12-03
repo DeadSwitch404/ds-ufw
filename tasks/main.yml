@@ -1,0 +1,54 @@
+---
+- name: Install ufw
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+
+- name: Enable and start ufw
+  ansible.builtin.systemd:
+    name: ufw
+    state: started
+    enabled: true
+
+- name: Disable IPv6
+  ansible.builtin.lineinfile:
+    path: /etc/default/ufw
+    regexp: "^IPV6="
+    line: "IPV6=no"
+    state: present
+  when: not ufw_ipv6 | bool
+  notify: Restart_ufw
+
+- name: Enable IPv6
+  ansible.builtin.lineinfile:
+    path: /etc/default/ufw
+    regexp: "^IPV6="
+    line: "IPV6=yes"
+    state: present
+  when: ufw_ipv6 | bool
+  notify: Restart_ufw
+
+- name: Set default deny incoming policy
+  community.general.ufw:
+    direction: incoming
+    default: deny
+
+- name: Set default allow outgoing policy
+  community.general.ufw:
+    direction: outgoing
+    default: allow
+    
+- name: Activate ufw
+  community.general.ufw:
+    state: enabled
+
+- name: Apply the firewall rules
+  community.general.ufw:
+    rule: "{{ item.rule }}"
+    proto: "{{ item.proto | default(omit) }}"
+    src: "{{ item.src | default(omit) }}"
+    dest: "{{ item.dest | default(omit) }}"
+    port: "{{ item.port | default(omit) }}"
+    comment: "{{ item.comment | default(omit) }}"
+  loop: "{{ ufw_rules }}"
+  notify: Restart_ufw

@@ -1,0 +1,58 @@
+#+TITLE: UFW Firewall Management Role
+#+AUTHOR: DeadSwitch | The Silent Architect
+
+* Overview
+An ansible role that deploys and configures a basic ufw firewall.
+Safe default policies: incoming traffic = deny; outgoing traffic = allow.
+
+* Requirements
+- Debian 12+ or compatible.
+- Sudo access.
+
+* Role Behavior
+1. Installs the ufw package.
+2. Enables and starts ufw with systemd.
+3. Enables or disables IPv6.
+4. Sets up the default policies.
+5. Applies firwall rules.
+6. Activates ufw.
+
+* Variables
+- =ufw_ipv6: [true|false]= :: (optional) Enables or disables IPv6. Default: true
+- =ufw_rules: []= :: List of firewall rules. See below.
+
+| Item      | Description                   |
+|-----------+-------------------------------|
+| =rule=    | allow or deny.                |
+| =src=     | Source IP or range.           |
+| =dest=    | Destination IP or range.      |
+| =port=    | Destination port.             |
+| =proto=   | Protocol: tcp, udp.           |
+| =comment= | Short description of the rule |
+
+* Example Playbook
+#+begin_src yaml
+- name: Configure firewall policies
+  hosts: all
+  become: true
+  roles:
+    - role: ds-ufw
+      vars:
+        ufw_ipv6: false
+        ufw_rules:
+          - { rule: allow, port: "443", proto: tcp, comment: "HTTPS" }
+          - { rule: allow, port: "8000", proto: tcp, src: "192.168.1.0/24", dest: "192.168.1.51", comment: "Python http.server" }
+#+end_src
+
+* Operational Notes
+- The default incoming rule is deny.
+- The default outgoing rule is allow.
+- IPv6 can be turned off with the =ufw_ipv6= variable.
+
+* Handlers
+The role restarts UFW when configuration changes occur.
+
+* License
+MIT License
+
+=[ Fear the Silence. Fear the Switch. ]=
