@@ -31,12 +31,12 @@
 - name: Set default deny incoming policy
   community.general.ufw:
     direction: incoming
-    default: deny
+    default: "{{ ufw_default_incoming }}"
 
 - name: Set default allow outgoing policy
   community.general.ufw:
     direction: outgoing
-    default: allow
+    default: "{{ ufw_default_outgoing }}"
     
 - name: Activate ufw
   community.general.ufw:

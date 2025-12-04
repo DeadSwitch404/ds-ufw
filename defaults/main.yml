@@ -1,2 +1,4 @@
 ---
 ufw_ipv6: true
+ufw_default_incoming: deny
+ufw_default_outgoing: allow

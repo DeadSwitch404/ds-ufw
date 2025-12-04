@@ -19,6 +19,8 @@ Safe default policies: incoming traffic = deny; outgoing traffic = allow.
 
 * Variables
 - =ufw_ipv6: [true|false]= :: (optional) Enables or disables IPv6. Default: true
+- =ufw_default_incoming: [allow|deny]= :: Default incoming policy.
+- =ufw_default_outgoing: [allow|deny]= :: Default outgoing policy.
 - =ufw_rules: []= :: List of firewall rules. See below.
 
 | Item      | Description                   |
@@ -29,6 +31,14 @@ Safe default policies: incoming traffic = deny; outgoing traffic = allow.
 | =port=    | Destination port.             |
 | =proto=   | Protocol: tcp, udp.           |
 | =comment= | Short description of the rule |
+
+* Default Variables
+
+#+begin_src yaml
+ufw_ipv6: true
+ufw_default_incoming: deny
+ufw_default_outgoing: allow
+#+end_src
 
 * Example Playbook
 #+begin_src yaml
