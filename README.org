@@ -23,14 +23,14 @@ Safe default policies: incoming traffic = deny; outgoing traffic = allow.
 - =ufw_default_outgoing: [allow|deny]= :: Default outgoing policy.
 - =ufw_rules: []= :: List of firewall rules. See below.
 
-| Item      | Description                   |
-|-----------+-------------------------------|
-| =rule=    | allow or deny.                |
-| =src=     | Source IP or range.           |
-| =dest=    | Destination IP or range.      |
-| =port=    | Destination port.             |
-| =proto=   | Protocol: tcp, udp.           |
-| =comment= | Short description of the rule |
+| Item      | Description                    |
+|-----------+--------------------------------|
+| =rule=    | allow or deny.                 |
+| =src=     | Source IP or range.            |
+| =dest=    | Destination IP or range.       |
+| =port=    | Destination port.              |
+| =proto=   | Protocol: tcp, udp.            |
+| =comment= | Short description of the rule. |
 
 * Default Variables
 
