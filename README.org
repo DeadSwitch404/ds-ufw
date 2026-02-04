@@ -1,5 +1,6 @@
 #+TITLE: UFW Firewall Management Role
 #+AUTHOR: DeadSwitch | The Silent Architect
+#+OPTIONS: toc:nil num:nil \n:t
 
 * Overview
 An ansible role that deploys and configures a basic ufw firewall.
