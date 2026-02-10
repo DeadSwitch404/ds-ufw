@@ -2,9 +2,12 @@
 #+AUTHOR: DeadSwitch | The Silent Architect
 #+OPTIONS: toc:nil num:nil \n:t
 
-* Overview
+* ds-ufw
 An ansible role that deploys and configures a basic ufw firewall.
-Safe default policies: incoming traffic = deny; outgoing traffic = allow.
+Safe default policies:
+
+- incoming traffic = deny
+- outgoing traffic = allow
 
 * Requirements
 - Debian 12+ or compatible.
@@ -46,6 +49,7 @@ ufw_default_outgoing: allow
 - name: Configure firewall policies
   hosts: all
   become: true
+  
   roles:
     - role: ds-ufw
       vars:
