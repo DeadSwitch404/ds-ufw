@@ -1,0 +1,10 @@
+name: Test the role
+on:
+  - push
+
+jobs:
+  test-the-role:
+    runs-on: iron-runner
+    steps:
+      - uses: actions/checkout@v6
+      - run: ansible-lint .
