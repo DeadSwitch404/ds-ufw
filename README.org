@@ -2,7 +2,8 @@
 #+AUTHOR: DeadSwitch | The Silent Architect
 #+OPTIONS: toc:nil num:nil \n:t
 
-* ds-ufw
+* ds_ufw
+
 An ansible role that deploys and configures a basic ufw firewall.
 Safe default policies:
 
@@ -51,7 +52,7 @@ ufw_default_outgoing: allow
   become: true
   
   roles:
-    - role: ds-ufw
+    - role: ds_ufw
       vars:
         ufw_ipv6: false
         ufw_rules:
@@ -65,7 +66,7 @@ ufw_default_outgoing: allow
 - IPv6 can be turned off with the =ufw_ipv6= variable.
 
 * Handlers
-The role restarts ufw when configuration changes occur.
+The role restarts =ufw= when configuration changes occur.
 
 * License
 MIT License

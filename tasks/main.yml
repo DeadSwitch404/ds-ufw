@@ -37,7 +37,7 @@
   community.general.ufw:
     direction: outgoing
     default: "{{ ufw_default_outgoing }}"
-    
+
 - name: Activate ufw
   community.general.ufw:
     state: enabled
